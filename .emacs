@@ -43,8 +43,16 @@
 (global-whitespace-mode 1)
 
 ;; auto-wrap on C files
-(setq-default fill-column 80)
+;;(setq-default fill-column 80)
+(add-hook 'c-mode-hook
+          (lambda ()
+            (set-fill-column 80)))
 (add-hook 'c-mode-hook 'turn-on-auto-fill)
+
+(add-hook 'text-mode-hook
+          (lambda ()
+            (set-fill-column 70)))
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ; Manual Tab
 (global-set-key (kbd "C-c TAB") 'insert-tab-char)
@@ -58,3 +66,13 @@
 
 
 (setq emerge-diff-options "--ignore-all-space")
+
+; Git commit mode and hooks for it
+(define-minor-mode git-committing-mode
+  "dummy")
+(add-to-list 'auto-mode-alist '("\\COMMIT_EDITMSG\\'" . git-committing-mode))
+(add-hook 'git-committing-mode-hook
+          (lambda ()
+            (set-fill-column 70)))
+(add-hook 'git-committing-mode-hook 'turn-on-auto-fill)
+
