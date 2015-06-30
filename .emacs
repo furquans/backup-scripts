@@ -19,6 +19,9 @@
 ;Going to a particular line
 (global-set-key (kbd "M-g") 'goto-line)
 
+;Show line numbers on left
+(global-set-key (kbd "C-l") 'linum-mode)
+
 ; Hide or show blocks
 (add-hook 'c-mode-common-hook
  (lambda()
